@@ -13,5 +13,5 @@ public class DemoPagamentosWorkerApplication {
 		SpringApplication.run(DemoPagamentosWorkerApplication.class, args);
 		System.err.println("Rodando Worker");
 	}
-
+ 
 }
