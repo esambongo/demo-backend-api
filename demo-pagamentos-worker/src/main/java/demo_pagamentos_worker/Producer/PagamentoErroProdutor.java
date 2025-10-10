@@ -10,8 +10,6 @@ public class PagamentoErroProdutor {
 	 private @Autowired AmqpTemplate amqpTemplate;
 	
 	public void getResposta(String mensagem) {
-		
-		System.err.println(mensagem);
 		this.amqpTemplate.convertAndSend("pagamento-response-erro-exchange","pagamento-response-erro-rout-key",mensagem);
 	}
 

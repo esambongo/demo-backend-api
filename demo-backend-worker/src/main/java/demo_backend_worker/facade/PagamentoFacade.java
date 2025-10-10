@@ -24,10 +24,10 @@ public class PagamentoFacade {
 	
 	
 	public void erroPagamento(String payload) {
-		System.err.println("========== RESPOSTA ERRO ==========" +payload );
+		System.err.println("========== RESPOSTA ERRO ==========");
 	}
 	
 	public void sucessoPagamento(String payload) {
-		System.err.println("========== RESPOSTA SUCESSO ==========" +payload );
+		System.err.println("========== RESPOSTA SUCESSO ==========");
 	}
 }

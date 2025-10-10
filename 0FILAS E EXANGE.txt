@@ -1,0 +1,15 @@
+01. FILAS
+ - pagamento-request-queue
+ - pagamento-response-crro-queue
+ - pagamento-response-sucesso-queue
+
+
+02. EXANGE
+ - pagamento-request-exchange
+ - pagamento-response-erro-exchange
+ - pagamento-response-sucesso-exchange
+
+03. ROUTING KEY
+  - pagamento-request-rout-key
+  - pagamento-response-erro-rout-key
+  - pagamento-response-sucesso-rout-key 

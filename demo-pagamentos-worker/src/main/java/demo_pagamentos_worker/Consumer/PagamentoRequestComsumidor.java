@@ -1,5 +1,6 @@
 package demo_pagamentos_worker.Consumer;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 import org.springframework.amqp.core.Message;
@@ -20,23 +21,12 @@ public class PagamentoRequestComsumidor {
     
     @RabbitListener(queues= {"pagamento-request-queue"})
     public void recebeMensagem(@Payload Message message) {
-		   System.err.println(message);
-		   
+    	    String mensagemRecebida = new String(message.getBody(), StandardCharsets.UTF_8);
+		    System.err.println("PROCESSANDO PAGAMENTO: "+mensagemRecebida);
 		   if(new Random().nextBoolean()) {
-			   this.sucessoProdutor.getResposta("Mensagem de sucesso pagamento: "+message);
+			   this.sucessoProdutor.getResposta(mensagemRecebida);
 		   }else {
-			   this.erroProdutor.getResposta("ERRO no pagamento: "+message);
+			   this.erroProdutor.getResposta(mensagemRecebida);
 		   }
 	   }
-   
-   /*@RabbitListener(queues= {"pagamento-request-queue"})
-   public void recebeMensagem(PagamentoDTO pagamentoDTO,Message message,Channel channel) {
-	   System.err.println(pagamentoDTO);
-	   
-	   if(new Random().nextBoolean()) {
-		   this.sucessoProdutor.getResposta("Mensagem de sucesso pagamento: "+message);
-	   }else {
-		   this.erroProdutor.getResposta("ERRO no pagamento: "+message);
-	   }
-   }*/
 }
