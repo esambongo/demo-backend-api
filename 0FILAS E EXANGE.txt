@@ -1,6 +1,6 @@
 01. FILAS
  - pagamento-request-queue
- - pagamento-response-crro-queue
+ - pagamento-response-erro-queue
  - pagamento-response-sucesso-queue
 
 

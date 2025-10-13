@@ -16,6 +16,12 @@ public class PagamentoApi {
 	
 	@PostMapping
 	public String processar(@RequestBody PagamentoDTO pagamentoDTO) {
+		System.err.println(pagamentoDTO);
+		PagamentoDTO pagamento=pagamentoDTO;
+		
+		pagamento.setNumeroPedido("2025."+pagamento.getNumeroPedido());
+		
+		System.err.println(pagamento);
 		return this.pagamentoFacade.solicitarPagamento(pagamentoDTO);
 	}
 }

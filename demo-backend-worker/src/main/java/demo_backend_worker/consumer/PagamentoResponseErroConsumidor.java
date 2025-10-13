@@ -19,7 +19,7 @@ public class PagamentoResponseErroConsumidor {
 	
 	private @Autowired PagamentoFacade pagamentoFacade;
 	
-	@RabbitListener(queues = {"pagamento-response-crro-queue"})
+	@RabbitListener(queues = {"pagamento-response-erro-queue"})
 	public void recive(@Payload Message message) {
 		//System.err.println("Message "+message + " "+ LocalDateTime.now());
 		
