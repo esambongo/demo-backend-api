@@ -8,6 +8,7 @@ public class MsEmailApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MsEmailApplication.class, args);
+		System.err.println("RODANDO O SERVIÇO E-MAIL...");
 	}
 
 }
