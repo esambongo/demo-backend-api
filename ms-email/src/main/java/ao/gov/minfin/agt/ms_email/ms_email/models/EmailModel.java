@@ -20,7 +20,7 @@ public class EmailModel implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID emailid;
+	private UUID emailId;
 	private String ownerRef;
 	private String emailFrom;
 	private String emailTo;
@@ -31,11 +31,13 @@ public class EmailModel implements Serializable{
 	private StatusEmail statusEmail;
 	
 	
-	public UUID getEmailid() {
-		return emailid;
+	
+	
+	public UUID getEmailId() {
+		return emailId;
 	}
-	public void setEmailid(UUID emailid) {
-		this.emailid = emailid;
+	public void setEmailId(UUID emailId) {
+		this.emailId = emailId;
 	}
 	public String getOwnerRef() {
 		return ownerRef;
