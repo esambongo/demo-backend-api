@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.Base64;
 
 import ao.gov.minfin.critografia.criptografia_cliente_servidor.model.CriptografiaClienteServidor;
@@ -19,7 +20,8 @@ public class Conexao {
 		int bytesLidos = in.read(infoBytes);
 		
 		if(bytesLidos > 0) {
-			return Base64.getEncoder().encodeToString(infoBytes);
+			byte[] realBytes = Arrays.copyOf(infoBytes, bytesLidos);
+			return Base64.getEncoder().encodeToString(realBytes);
 		}else {
 			return "";
 		}
@@ -33,7 +35,8 @@ public class Conexao {
 		
 		
 		if(bytesLidos > 0) {
-			return CriptografiaClienteServidor.byteParaChave(infoBytes);
+			byte[] realBytes = Arrays.copyOf(infoBytes, bytesLidos);
+			return CriptografiaClienteServidor.byteParaChave(realBytes);
 		}else {
 			return null;
 		}
@@ -43,11 +46,13 @@ public class Conexao {
 	public static void enviarChave(Socket socket,PublicKey chave) throws IOException {
 		OutputStream out = socket.getOutputStream();
 		out.write(chave.getEncoded());
+		out.flush();
 	}
 	
 	public static void enviar(Socket socket,String textoRequisicao) throws IOException {
 		byte[] bytesRequisicao = Base64.getDecoder().decode(textoRequisicao);
 		OutputStream out = socket.getOutputStream();
 		out.write(bytesRequisicao);
+		out.flush();
 	}
 }

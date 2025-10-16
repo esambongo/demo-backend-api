@@ -1,6 +1,5 @@
 package ao.gov.minfin.critografia.criptografia_cliente_servidor.model;
 
-import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -20,7 +19,7 @@ import javax.crypto.NoSuchPaddingException;
 public class CriptografiaClienteServidor {
 	
 	
-	public static KeyPair nerarChavesPublicasPrivadas() throws NoSuchAlgorithmException {
+	public static KeyPair gerarChavesPublicasPrivadas() throws NoSuchAlgorithmException {
 		KeyPairGenerator geradorChave = KeyPairGenerator.getInstance("RSA");
 		
 		geradorChave.initialize(2048);
@@ -43,14 +42,19 @@ public class CriptografiaClienteServidor {
 	}
 	
 	
-	public static String decifrar(String mensagem, PrivateKey privateKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+	public static String decifrar(String mensagem, PrivateKey privateKey) throws Exception {
 		byte[] bytesCifrados= Base64.getDecoder().decode(mensagem);
+		
 		
 		Cipher cifrador = Cipher.getInstance("RSA/ECB/PKCS1Padding");
 		
 		cifrador.init(Cipher.DECRYPT_MODE, privateKey);
 		
+		
+		
+		System.out.println("ANTES DE RETORNAR: "+privateKey);
 		byte[] mensagemDecifrada = cifrador.doFinal(bytesCifrados);
+		
 		
 		return new String(mensagemDecifrada,"UTF8");
 	}
