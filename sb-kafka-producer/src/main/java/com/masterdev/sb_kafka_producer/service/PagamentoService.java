@@ -1,12 +1,30 @@
 package com.masterdev.sb_kafka_producer.service;
 
-import com.masterdev.sb_kafka_producer.DTO.PagamentoDTO;
+import org.springframework.stereotype.Service;
 
+import com.masterdev.sb_kafka_producer.DTO.PagamentoDTO;
+import com.masterdev.sb_kafka_producer.producer.PagamentoProducer;
+
+
+@Service
 public class PagamentoService {
 
+	
+	              
+	private final PagamentoProducer pagamentoProducer;
+	
+	
+	public PagamentoService(PagamentoProducer producer){
+		this.pagamentoProducer=producer;
+	}
+	
 	public String processarPagamento(PagamentoDTO pagamentoDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return this.pagamentoProducer.enviar(pagamentoDTO);
+		}catch(Exception e) {
+			return "======>> Erro ao enviar pagamento: "+e.getMessage();			
+		}
+		
 	}
 
 }
